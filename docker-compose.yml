@@ -1,0 +1,21 @@
+version: "3" ## especifica a versão do docker-compose file
+
+services: ## Define um serviço
+
+  postgres: ## nome do serviço
+    image: postgres:13.3-alpine ## imagem com a versão do banco de dados
+    container_name: app-database ## nome para o container
+    volumes:
+      # - ./db:/docker-entrypoint-initdb.d/dumps.sql ## Caso tenha um backup inicial e deseja iniciar o banco importando o arquivo sql
+      - pgdata:/var/lib/postgresql/data ## salva os dados em um volume para não perder os dados do banco quando for recriar o container
+    environment:
+      - POSTGRES_USER=user123 ## informa o usuário para acesso ao banco
+      - POSTGRES_PASSWORD=pass123 ## informa a senha  para acesso ao banco
+      - POSTGRES_DB=db_techagro ## informa o nome do banco de dados
+    ports:
+      - "5432:5432" ## Exporta a porta do container para poder acessar pela no seu pc
+
+volumes:
+  pgdata:
+    driver: local
+    name: cotacoes-pgdata
