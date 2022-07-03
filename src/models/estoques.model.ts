@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import {Entity, model, property} from '@loopback/repository';
 
 @model()
@@ -25,7 +26,6 @@ export class Estoques extends Entity {
     required: true,
   })
   quantidade: number;
-
 
   constructor(data?: Partial<Estoques>) {
     super(data);
