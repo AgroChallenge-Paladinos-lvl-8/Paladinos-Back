@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import {Entity, model, property} from '@loopback/repository';
+import {belongsTo, Entity, model, property} from '@loopback/repository';
+import {Produtos} from './produtos.model';
 
 @model()
 export class Estoques extends Entity {
@@ -14,6 +15,7 @@ export class Estoques extends Entity {
     type: 'number',
     required: true,
   })
+  @belongsTo(() => Produtos)
   id_produto: number;
 
   @property({
@@ -33,7 +35,7 @@ export class Estoques extends Entity {
 }
 
 export interface EstoquesRelations {
-  // describe navigational properties here
+  produto?: Produtos;
 }
 
 export type EstoquesWithRelations = Estoques & EstoquesRelations;
